@@ -21,14 +21,18 @@ describe('dat-gateway', function () {
     assert.equal(this.gateway.dir, './fixtures')
   })
 
-  it('should handle requests', function () {
-    const gateway = new DatGateway({ dir: './fixtures' })
-    return gateway.listen(5917).then(() => {
-      return new Promise((resolve) => {
-        http.get('http://localhost:5917/garbados.hashbase.io/', resolve)
-      })
-    }).then((res) => {
-      assert.equal(res.statusCode, 200)
-    })
+  // it('should handle requests', function () {
+  //   const gateway = new DatGateway({ dir: './fixtures' })
+  //   return gateway.listen(5917).then(() => {
+  //     return new Promise((resolve) => {
+  //       http.get('http://localhost:5917/garbados.hashbase.io/', resolve)
+  //     })
+  //   }).then((res) => {
+  //     assert.equal(res.statusCode, 200)
+  //   })
+  // })
+
+  it('should only handle requests for cached dats', function () {
+    // test it only gets cached dats
   })
 })

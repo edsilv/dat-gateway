@@ -74,20 +74,20 @@ class DatGateway {
     // check local cache
     if (this.cache.has(key)) return Promise.resolve(this.cache.get(key))
     // retrieve from the web
-    return new Promise((resolve, reject) => {
-      const opts = Object.assign({}, this.datOptions, { key })
-      Dat(this.dir, opts, (err, dat) => {
-        if (err) {
-          return reject(err)
-        } else {
-          this.cache.set(key, dat)
-          dat.joinNetwork()
-          dat.onrequest = hyperdriveHttp(dat.archive, { live: true, exposeHeaders: true })
-          dat.archive.metadata.update(() => {
-            resolve(dat)
-          })
-        }
-      })
+    // return new Promise((resolve, reject) => {
+    //   const opts = Object.assign({}, this.datOptions, { key })
+    //   Dat(this.dir, opts, (err, dat) => {
+    //     if (err) {
+    //       return reject(err)
+    //     } else {
+    //       this.cache.set(key, dat)
+    //       dat.joinNetwork()
+    //       dat.onrequest = hyperdriveHttp(dat.archive, { live: true, exposeHeaders: true })
+    //       dat.archive.metadata.update(() => {
+    //         resolve(dat)
+    //       })
+    //     }
+    //   })
     })
   }
 
